@@ -1,0 +1,24 @@
+<form ngForm #assignmentForm class="form"
+      (submit)="onSubmit()">
+    <mat-form-field>
+        <input matInput [(ngModel)]="nomDevoir" name="nom">
+    </mat-form-field>
+    <p>{{ nomDevoir }}</p>
+    <button
+        mat-stroked-button
+        color="primary"
+    >
+      Ajouter un devoir
+    </button>
+</form>
+
+<div *ngFor="let assignment of assignments">
+    <p appRendu *ngIf="assignment.rendu; else nonsoumis">
+        Devoir intitulé {{assignment.nom}}, rendu le 
+                                  {{assignment.dateDeRendu}}.
+    </p>
+    <ng-template #nonsoumis>
+        Le devoir {{assignment.nom}} n'a pas été rendu.
+    </ng-template>
+</div>
+ 
